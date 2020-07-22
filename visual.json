@@ -1,0 +1,13 @@
+{
+  "name": "Wave Chart",
+  "version": "0.0.3",
+  "displayName": "Wave Chart",
+  "displayNameKey": "Wave Chart",
+  "icon": "assets/icon.png",
+  "description": "",
+  "externalJs": [],
+  "externalCss": [],
+  "configuration": {
+    "token": "xxxxxxx"
+  }
+}

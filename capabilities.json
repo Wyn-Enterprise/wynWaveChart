@@ -1,0 +1,131 @@
+{
+  "dataBinding": {
+    "dataRoles": [      
+      {
+        "name": "ActualValue",
+        "displayNameKey": "Actual Value",
+        "kind": "value"
+      },
+      {
+        "name": "TargetValue",
+        "displayNameKey": "Target Value",
+        "kind": "value"
+      }
+    ],
+    "dataViewMappings": [
+      {
+        "plain": {
+        }
+      }
+    ]
+  },
+  "options": {
+    "visual": [
+
+      {
+        "displayName": "Custom attribute",
+        "properties": [
+          {
+            "name": "showSubTitle",
+            "type": "Boolean",
+            "displayName": "Show Subtitle",
+            "defaultValue": false
+          },
+          {
+            "name": "subtitle",
+            "type": "Text",
+            "displayNameKey": "subtitle",
+            "defaultValue": "Examples"
+          },
+          {
+            "displayNameKey": "Liquid Shape",
+            "name": "shape",
+            "type": "Enum",
+            "items": [
+              {
+                "value": "rect",
+                "displayNameKey": "rect"
+              },
+              {
+                "value": "roundRect",
+                "displayNameKey": "roundRect"
+              },
+              {
+                "value": "circle",
+                "displayNameKey": "circle"
+              },
+              {
+                "value": "diamond",
+                "displayNameKey": "diamond"
+              }
+            ],
+            "defaultValue": "circle"
+          },
+          {
+            "name": "borderWidth",
+            "type": "Integer",
+            "displayName": "Border Width",
+            "defaultValue": "5"
+          },
+          {
+            "name": "borderColor",
+            "type": "Color",
+            "displayName": "Border Color",
+            "defaultValue": "#ccc"
+          },
+          {
+            "name": "waterColor",
+            "type": "Color",
+            "displayName": "Water Color",
+            "defaultValue": "#e6776c"
+          },
+          {
+            "name": "backgroundColor",
+            "type": "Color",
+            "displayName": "Background Color",
+            "defaultValue": "#fff"
+          },
+          {
+            "name": "fontSize",
+            "type": "Integer",
+            "displayName": "Font Size",
+            "defaultValue": 30
+          }
+        ]
+      },
+      {
+        "type": "interaction"
+      },
+      {
+        "type": "title"
+      },
+      {
+        "type": "appearance"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "type": "focus"
+    },
+    {
+      "type": "export"
+    },
+    {
+      "type": "filter"
+    },
+    {
+      "type": "sort"
+    },
+    {
+      "type": "rank"
+    },
+    {
+      "type": "convertVisual"
+    },
+    {
+      "type": "annotation"
+    }
+  ],
+  "analysis": []
+}
