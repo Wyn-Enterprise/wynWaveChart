@@ -3,7 +3,7 @@ Wave Chart custom data visualization for WynDashboards
 
 ------------------------------------------------------
 Steps to run the sample:
-1. Install wyn-visual-tools globally. Run 'npm install wyn-visual-tools -g' from command prompt.
+1. Install wyn-visual-tools globally. Run 'npm install @grapecity/wyn-visual-tools -g ' from command prompt.
 2. Change directory to the sample's location and run 'npm install' to install all required modules.
 3. Run 'wyn-visual-tools develop' to start the development server.
 4. Open Wyn Enterprise portal in your browser. Go to Admin Portal > Dashboards Settings and enable the developer mode.
