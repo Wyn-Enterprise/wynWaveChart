@@ -23,7 +23,7 @@
     "visual": [
 
       {
-        "displayName": "Custom attribute",
+        "displayName": "Custom Attributes",
         "properties": [
           {
             "name": "showSubTitle",
@@ -84,6 +84,22 @@
             "type": "Color",
             "displayName": "Background Color",
             "defaultValue": "#fff"
+          },
+          {
+            "displayNameKey": "Calculation Mode",
+            "name": "calculationMode",
+            "type": "Enum",
+            "items": [
+              {
+                "value": "Ratio",
+                "displayNameKey": "Ratio"
+              },
+              {
+                "value": "Delta",
+                "displayNameKey": "Delta"
+              }              
+            ],
+            "defaultValue": "Ratio"
           },
           {
             "name": "fontSize",

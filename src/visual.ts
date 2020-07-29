@@ -9,8 +9,7 @@ export default class Visual {
     private container: HTMLDivElement;
     private chart: any;
     private items: any;
-    private properties: any;
-    //private valueField: any;
+    private properties: any;    
     private ActualValue: any;
     private TargetValue: any;
 
@@ -24,8 +23,7 @@ export default class Visual {
         this.items = [];
         this.properties = {
             showSubTitle: false,
-            subtitle: 'Examples',
-            //'rect'，'roundRect'，'triangle'，'diamond'，'pin'，'arrow';
+            subtitle: 'Example',            
             shape: 'circle',
             borderWidth: 5,
             borderColor: '#1daaeb',
@@ -39,16 +37,19 @@ export default class Visual {
         const dataView = options.dataViews[0];
         this.items = [];
         if ((dataView &&
-                dataView.plain.profile.ActualValue.values.length && dataView.plain.profile.TargetValue.values.length)) {
+            dataView.plain.profile.ActualValue.values.length && dataView.plain.profile.TargetValue.values.length)) {
             const plainData = dataView.plain;
-            //this.valueField = plainData.profile.values.values;
+            const calculationMode = options.properties.calculationMode;
             this.ActualValue = plainData.profile.ActualValue.values;
             this.TargetValue = plainData.profile.TargetValue.values;
-            //if (this.valueField.length == 1) {
-            //    this.items = plainData.data[0][this.valueField[0].display].toFixed(4);
-            //} else {
-            this.items = (plainData.data[0][this.ActualValue[0].display] / plainData.data[0][this.TargetValue[0].display]).toFixed(4);
-            //}
+            switch (calculationMode) {
+                case "Ratio":
+                    this.items = (plainData.data[0][this.ActualValue[0].display] / plainData.data[0][this.TargetValue[0].display]).toFixed(4);
+                    break;
+                case "Delta":
+                    this.items = ((plainData.data[0][this.ActualValue[0].display] - plainData.data[0][this.TargetValue[0].display]) / plainData.data[0][this.TargetValue[0].display]).toFixed(4);
+                    break;
+            }
         }
         this.properties = options.properties;
         this.render();
@@ -60,7 +61,7 @@ export default class Visual {
         const items = isMock ? Visual.mockItems : this.items;
         this.container.style.opacity = isMock ? '0.3' : '1';
         const options = this.properties;
-        var option = {
+        const option = {
             series: [{
                 type: 'liquidFill',
                 radius: '75%',
