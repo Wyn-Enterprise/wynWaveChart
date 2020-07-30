@@ -23,6 +23,10 @@ export default class Visual {
         this.items = [];
         this.properties = {
             showSubTitle: false,
+            actualValueSource: 'Dataset',
+            constantActualValue: '50',
+            targetValueSource: 'Dataset',
+            constantTargetValue: '100',
             subtitle: 'Example',            
             shape: 'circle',
             borderWidth: 5,
@@ -36,10 +40,11 @@ export default class Visual {
     public update(options: any) {
         const dataView = options.dataViews[0];
         this.items = [];
+        const calculationMode = options.properties.calculationMode;
         if ((dataView &&
-            dataView.plain.profile.ActualValue.values.length && dataView.plain.profile.TargetValue.values.length)) {
+            dataView.plain.profile.ActualValue.values.length && dataView.plain.profile.TargetValue.values.length &&
+            options.properties.actualValueSource == "Dataset" && options.properties.targetValueSource == "Dataset")) {
             const plainData = dataView.plain;
-            const calculationMode = options.properties.calculationMode;
             this.ActualValue = plainData.profile.ActualValue.values;
             this.TargetValue = plainData.profile.TargetValue.values;
             switch (calculationMode) {
@@ -47,9 +52,45 @@ export default class Visual {
                     this.items = (plainData.data[0][this.ActualValue[0].display] / plainData.data[0][this.TargetValue[0].display]).toFixed(4);
                     break;
                 case "Delta":
-                    this.items = ((plainData.data[0][this.ActualValue[0].display] - plainData.data[0][this.TargetValue[0].display]) / plainData.data[0][this.TargetValue[0].display]).toFixed(4);
+                    this.items = ((plainData.data[0][this.TargetValue[0].display] - plainData.data[0][this.ActualValue[0].display]) / plainData.data[0][this.TargetValue[0].display]).toFixed(4);
                     break;
             }
+        } else if (options.properties.actualValueSource != "Dataset" && options.properties.targetValueSource != "Dataset" ) { 
+            switch (calculationMode) {
+                case "Ratio":
+                    this.items = (options.properties.constantActualValue / options.properties.constantTargetValue).toFixed(4);
+                    break;
+                case "Delta":
+                    this.items = ((options.properties.constantTargetValue - options.properties.constantActualValue) / options.properties.constantTargetValue).toFixed(4);
+                    break;
+            }
+            
+        } else if (options.properties.actualValueSource == "Dataset" && 
+                    dataView && dataView.plain.profile.ActualValue.values.length && options.properties.targetValueSource != "Dataset") {
+            const plainData = dataView.plain;
+            this.ActualValue = plainData.profile.ActualValue.values;
+            switch (calculationMode) {
+                case "Ratio":
+                    this.items = (plainData.data[0][this.ActualValue[0].display] / options.properties.constantTargetValue).toFixed(4);
+                    break;
+                case "Delta":
+                    this.items = ((options.properties.constantTargetValue - plainData.data[0][this.ActualValue[0].display]) / options.properties.constantTargetValue).toFixed(4);
+                    break;
+            }
+
+        } else if (options.properties.actualValueSource != "Dataset" && 
+                    dataView && dataView.plain.profile.TargetValue.values.length && options.properties.targetValueSource == "Dataset") {
+            const plainData = dataView.plain;
+            this.TargetValue = plainData.profile.TargetValue.values;
+            switch (calculationMode) {
+                case "Ratio":
+                    this.items = (options.properties.constantActualValue / plainData.data[0][this.TargetValue[0].display]).toFixed(4);
+                    break;
+                case "Delta":
+                    this.items = ((plainData.data[0][this.TargetValue[0].display] - options.properties.constantActualValue) / plainData.data[0][this.TargetValue[0].display]).toFixed(4);
+                    break;
+            }
+            
         }
         this.properties = options.properties;
         this.render();
@@ -99,10 +140,18 @@ export default class Visual {
 
     // Custom attribute visibility
     public getInspectorHiddenState(updateOptions: any): string[] {
+        const blackList : string[] = [];
+        
         if (!updateOptions.properties.showSubTitle) {
-            return ['subtitle'];
+            blackList.push('subtitle');
         }
-        return null;
+        if (updateOptions.properties.actualValueSource == "Dataset") {
+            blackList.push('constantActualValue');
+        }
+        if (updateOptions.properties.targetValueSource == "Dataset") {
+            blackList.push('constantTargetValue');
+        }
+        return blackList;
     }
 
     // Function button visibility

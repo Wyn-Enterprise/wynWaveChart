@@ -1,147 +1,184 @@
 {
-  "dataBinding": {
-    "dataRoles": [      
-      {
-        "name": "ActualValue",
-        "displayNameKey": "Actual Value",
-        "kind": "value"
-      },
-      {
-        "name": "TargetValue",
-        "displayNameKey": "Target Value",
-        "kind": "value"
-      }
-    ],
-    "dataViewMappings": [
-      {
-        "plain": {
-        }
-      }
-    ]
-  },
-  "options": {
-    "visual": [
+    "dataBinding": {
+        "dataRoles": [{
+                "name": "ActualValue",
+                "displayNameKey": "Actual Value",
+                "kind": "value"
+            },
+            {
+                "name": "TargetValue",
+                "displayNameKey": "Target Value",
+                "kind": "value"
+            }
+        ],
+        "dataViewMappings": [{
+            "plain": {}
+        }]
+    },
+    "options": {
+        "visual": [
 
-      {
-        "displayName": "Custom Attributes",
-        "properties": [
-          {
-            "name": "showSubTitle",
-            "type": "Boolean",
-            "displayName": "Show Subtitle",
-            "defaultValue": false
-          },
-          {
-            "name": "subtitle",
-            "type": "Text",
-            "displayNameKey": "subtitle",
-            "defaultValue": "Examples"
-          },
-          {
-            "displayNameKey": "Liquid Shape",
-            "name": "shape",
-            "type": "Enum",
-            "items": [
-              {
-                "value": "rect",
-                "displayNameKey": "rect"
-              },
-              {
-                "value": "roundRect",
-                "displayNameKey": "roundRect"
-              },
-              {
-                "value": "circle",
-                "displayNameKey": "circle"
-              },
-              {
-                "value": "diamond",
-                "displayNameKey": "diamond"
-              }
-            ],
-            "defaultValue": "circle"
-          },
-          {
-            "name": "borderWidth",
-            "type": "Integer",
-            "displayName": "Border Width",
-            "defaultValue": "5"
-          },
-          {
-            "name": "borderColor",
-            "type": "Color",
-            "displayName": "Border Color",
-            "defaultValue": "#ccc"
-          },
-          {
-            "name": "waterColor",
-            "type": "Color",
-            "displayName": "Water Color",
-            "defaultValue": "#e6776c"
-          },
-          {
-            "name": "backgroundColor",
-            "type": "Color",
-            "displayName": "Background Color",
-            "defaultValue": "#fff"
-          },
-          {
-            "displayNameKey": "Calculation Mode",
-            "name": "calculationMode",
-            "type": "Enum",
-            "items": [
-              {
-                "value": "Ratio",
-                "displayNameKey": "Ratio"
-              },
-              {
-                "value": "Delta",
-                "displayNameKey": "Delta"
-              }              
-            ],
-            "defaultValue": "Ratio"
-          },
-          {
-            "name": "fontSize",
-            "type": "Integer",
-            "displayName": "Font Size",
-            "defaultValue": 30
-          }
+            {
+                "displayName": "Custom Attributes",
+                "properties": [{
+                        "name": "showSubTitle",
+                        "type": "Boolean",
+                        "displayName": "Show Subtitle",
+                        "defaultValue": false
+                    },
+                    {
+                        "name": "subtitle",
+                        "type": "Text",
+                        "displayNameKey": "Subtitle",
+                        "defaultValue": "Examples"
+                    },
+                    {
+                        "displayNameKey": "Liquid Shape",
+                        "name": "shape",
+                        "type": "Enum",
+                        "items": [{
+                                "value": "rect",
+                                "displayNameKey": "rect"
+                            },
+                            {
+                                "value": "roundRect",
+                                "displayNameKey": "roundRect"
+                            },
+                            {
+                                "value": "circle",
+                                "displayNameKey": "circle"
+                            },
+                            {
+                                "value": "diamond",
+                                "displayNameKey": "diamond"
+                            }
+                        ],
+                        "defaultValue": "circle"
+                    },
+                    {
+                        "name": "borderWidth",
+                        "type": "Integer",
+                        "displayName": "Border Width",
+                        "defaultValue": "5"
+                    },
+                    {
+                        "name": "borderColor",
+                        "type": "Color",
+                        "displayName": "Border Color",
+                        "defaultValue": "#ccc"
+                    },
+                    {
+                        "name": "waterColor",
+                        "type": "Color",
+                        "displayName": "Water Color",
+                        "defaultValue": "#e6776c"
+                    },
+                    {
+                        "name": "backgroundColor",
+                        "type": "Color",
+                        "displayName": "Background Color",
+                        "defaultValue": "#fff"
+                    },
+                    {
+                        "name": "fontSize",
+                        "type": "Integer",
+                        "displayName": "Font Size",
+                        "defaultValue": 30
+                    }
+                ]
+            },
+            {
+                "displayName": "Value Settings",
+                "properties": [{
+                        "displayNameKey": "Calculation Mode",
+                        "name": "calculationMode",
+                        "type": "Enum",
+                        "items": [{
+                                "value": "Ratio",
+                                "displayNameKey": "Ratio"
+                            },
+                            {
+                                "value": "Delta",
+                                "displayNameKey": "Delta"
+                            }
+                        ],
+                        "defaultValue": "Ratio"
+                    },
+                    {
+                        "displayNameKey": "Actual Value Source",
+                        "name": "actualValueSource",
+                        "type": "Enum",
+                        "items": [{
+                                "value": "Dataset",
+                                "displayNameKey": "Dataset"
+                            },
+                            {
+                                "value": "Constant",
+                                "displayNameKey": "Custom Value"
+                            }
+                        ],
+                        "defaultValue": "Dataset"
+                    }, {
+                        "name": "constantActualValue",
+                        "type": "Text",
+                        "displayNameKey": "Actual Value",
+                        "defaultValue": "50"
+                    },
+                    {
+                        "displayNameKey": "Target Value Source",
+                        "name": "targetValueSource",
+                        "type": "Enum",
+                        "items": [{
+                                "value": "Dataset",
+                                "displayNameKey": "Dataset"
+                            },
+                            {
+                                "value": "Constant",
+                                "displayNameKey": "Custom Value"
+                            }
+                        ],
+                        "defaultValue": "Dataset"
+                    },
+                    {
+                        "name": "constantTargetValue",
+                        "type": "Text",
+                        "displayNameKey": "Target Value",
+                        "defaultValue": "100"
+                    }
+                ]
+            },
+            {
+                "type": "interaction"
+            },
+            {
+                "type": "title"
+            },
+            {
+                "type": "appearance"
+            }
         ]
-      },
-      {
-        "type": "interaction"
-      },
-      {
-        "type": "title"
-      },
-      {
-        "type": "appearance"
-      }
-    ]
-  },
-  "actions": [
-    {
-      "type": "focus"
     },
-    {
-      "type": "export"
-    },
-    {
-      "type": "filter"
-    },
-    {
-      "type": "sort"
-    },
-    {
-      "type": "rank"
-    },
-    {
-      "type": "convertVisual"
-    },
-    {
-      "type": "annotation"
-    }
-  ],
-  "analysis": []
+    "actions": [{
+            "type": "focus"
+        },
+        {
+            "type": "export"
+        },
+        {
+            "type": "filter"
+        },
+        {
+            "type": "sort"
+        },
+        {
+            "type": "rank"
+        },
+        {
+            "type": "convertVisual"
+        },
+        {
+            "type": "annotation"
+        }
+    ],
+    "analysis": []
 }
